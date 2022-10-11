@@ -2,7 +2,7 @@ import 'package:fishop_admin/app/bloc/app_bloc.dart';
 import 'package:fishop_admin/ui/home/view/home_screen.dart';
 import 'package:fishop_admin/ui/login/cubit/login_cubit.dart';
 import 'package:fishop_admin/ui/login/view/login_screen.dart';
-import 'package:fishop_admin/ui/product/view/product_add_view.dart';
+import 'package:fishop_admin/ui/product_add/view/product_add_view.dart';
 import 'package:fishop_firebase/fishop_firebase.dart';
 
 import 'package:flutter/material.dart';
@@ -33,14 +33,15 @@ class App extends StatelessWidget {
         GoRoute(
           path: '/home',
           builder: (context, state) {
-            return ProductAddView();
+            return HomeScreen();
           },
         )
       ],
     );
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: FiTheme().myTheme,
+      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
       routerConfig: router,
     );
   }

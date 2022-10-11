@@ -1,4 +1,6 @@
 import 'package:fi_widget/fi_widget.dart';
+import 'package:fishop_admin/ui/product_add/service/product_service.dart';
+import 'package:fishop_firebase/fishop_firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,7 +14,7 @@ class ProductAddView extends StatefulWidget {
   final TextEditingController trendProductController = TextEditingController();
   final TextEditingController unitPriceController = TextEditingController();
   final TextEditingController categoryController = TextEditingController();
-
+  final ProductService productService = ProductService();
   @override
   State<ProductAddView> createState() => _ProductAddViewState();
 }
@@ -24,42 +26,61 @@ class _ProductAddViewState extends State<ProductAddView> {
       child: Scaffold(
         body: Column(children: [
           const Text('title'),
-          TextFormField(
+          TextField(
             onChanged: (value) => value = widget.titleController.text,
             controller: widget.titleController,
           ),
           const Text('stock count'),
-          TextFormField(
+          TextField(
+            keyboardType: TextInputType.number,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onChanged: (value) => value = widget.stockCountController.text,
             controller: widget.stockCountController,
           ),
           const Text('size'),
-          TextFormField(
+          TextField(
             onChanged: (value) => value = widget.sizeController.text,
             controller: widget.sizeController,
           ),
           const Text('product name'),
-          TextFormField(
+          TextField(
             onChanged: (value) => value = widget.productNameController.text,
             controller: widget.productNameController,
           ),
           const Text('description'),
-          TextFormField(
+          TextField(
             onChanged: (value) => value = widget.descriptionController.text,
             controller: widget.descriptionController,
             maxLines: 5,
           ),
-          const Text('trend product'),
-          TextFormField(
-            onChanged: (value) => value = widget.trendProductController.text,
+          const Text('unit price'),
+          TextField(
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            controller: widget.trendProductController,
-          ),
-          const Text('unit price'),
-          TextFormField(
+            onChanged: (value) => value = widget.unitPriceController.text,
             controller: widget.unitPriceController,
           ),
+          const Text('Category'),
+          TextField(
+            controller: widget.categoryController,
+            onChanged: (value) => value = widget.categoryController.text,
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              await widget.productService.addProduct(
+                Product(
+                  category: widget.categoryController.text,
+                  description: widget.descriptionController.text,
+                  productName: widget.productNameController.text,
+                  size: widget.sizeController.text,
+                  stockCount: int.parse(widget.stockCountController.text),
+                  title: widget.titleController.text,
+                  unitPrice: int.parse(widget.unitPriceController.text),
+                ),
+              );
+            },
+            child: const Text('add to product'),
+          )
         ]),
       ),
     );

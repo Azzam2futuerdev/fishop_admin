@@ -56,6 +56,7 @@ dependencies:
   fishop_firebase:
     git: https://github.com/fiskindal/fishop_firebase.git
   font_awesome_flutter: ^10.2.1
+  logger: ^1.1.0
 
 dev_dependencies:
   flutter_test:

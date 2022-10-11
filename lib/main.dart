@@ -9,9 +9,11 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fishop_admin/app/app.dart';
 import 'package:fishop_admin/bootstrap.dart';
+import 'package:fishop_admin/ui/home/cubit/home_cubit.dart';
 import 'package:fishop_firebase/fishop_firebase.dart';
 import 'package:fishop_admin/firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,8 +24,15 @@ void main() async {
   );
   final authenticationRepository = AuthenticationRepository();
   await authenticationRepository.user.first;
-  bootstrap(() => App(
-        authenticationRepository: authenticationRepository,
+  bootstrap(() => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => HomeCubit(),
+          ),
+        ],
+        child: App(
+          authenticationRepository: authenticationRepository,
+        ),
       ));
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
