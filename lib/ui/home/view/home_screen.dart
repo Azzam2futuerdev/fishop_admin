@@ -24,24 +24,21 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           return BottomNavigationBar(
-            backgroundColor: Colors.deepPurple[600],
             onTap: (value) => context.read<HomeCubit>().setCurrentIndex(value),
             currentIndex: state.currentIndex,
-            items: [
+            items: const [
               BottomNavigationBarItem(
-                  backgroundColor: Colors.deepPurple[600],
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.healing,
                     color: Colors.white,
                   ),
-                  label: 'İstekler'),
+                  label: 'product list'),
               BottomNavigationBarItem(
-                  backgroundColor: Colors.deepPurple[600],
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.approval,
                     color: Colors.white,
                   ),
-                  label: 'Onay Durumları'),
+                  label: 'product add view'),
             ],
           );
         },
