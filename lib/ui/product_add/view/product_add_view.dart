@@ -25,6 +25,12 @@ class _ProductAddViewState extends State<ProductAddView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => widget.productService.uploadFromGallery(),
+          ),
+        ]),
         body: Column(children: [
           const Text('title'),
           TextField(
@@ -70,6 +76,7 @@ class _ProductAddViewState extends State<ProductAddView> {
             onPressed: () async {
               await widget.productService.addProduct(
                 Product(
+                  id: AuthenticationRepository().currentUser.id,
                   category: widget.categoryController.text,
                   description: widget.descriptionController.text,
                   productName: widget.productNameController.text,
