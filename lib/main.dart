@@ -4,8 +4,6 @@
 // Use of this source code is governed by an MIT-style
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
-
-import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fishop_admin/app/app.dart';
 import 'package:fishop_admin/bootstrap.dart';
@@ -34,8 +32,4 @@ void main() async {
           authenticationRepository: authenticationRepository,
         ),
       ));
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 }

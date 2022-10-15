@@ -3,6 +3,7 @@ import 'package:fishop_admin/ui/product_add/service/product_service.dart';
 import 'package:fishop_firebase/fishop_firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProductAddView extends StatefulWidget {
   ProductAddView({super.key});
