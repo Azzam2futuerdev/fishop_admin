@@ -8,30 +8,28 @@ class ProductListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FirestoreDataTable(
-        onSelectedRows: (items) => print(items),
-        columnLabels: const {
-          'id': Text('id'),
-          'title': Text('title'),
-          'rating': Text('rating'),
-          'type': Text('type'),
-          'stockCount': Text('stockCount'),
-          'size': Text('size'),
-          'productName': Text('productName'),
-          'description': Text('description'),
-          'customerReview': Text('customerReview'),
-          'trendProduct': Text('trendProduct'),
-          'unitPrice': Text('unitPrice'),
-          'category': Text('category'),
-          'storeName': Text('storeName'),
-          'storeId': Text('storeId')
-        },
-        query: productsRef.reference.withConverter<Product>(
-          fromFirestore: (DocumentSnapshot<Map<String, dynamic>> snapshot, _) =>
-              Product.fromJson(snapshot.data()!),
-          toFirestore: (product, _) => product.toJson(),
-        ),
+    return FirestoreDataTable(
+      onSelectedRows: (items) => print(items),
+      columnLabels: const {
+        'id': Text('id'),
+        'title': Text('title'),
+        'rating': Text('rating'),
+        'type': Text('type'),
+        'stockCount': Text('stockCount'),
+        'size': Text('size'),
+        'productName': Text('productName'),
+        'description': Text('description'),
+        'customerReview': Text('customerReview'),
+        'trendProduct': Text('trendProduct'),
+        'unitPrice': Text('unitPrice'),
+        'category': Text('category'),
+        'storeName': Text('storeName'),
+        'storeId': Text('storeId')
+      },
+      query: productsRef.reference.withConverter<Product>(
+        fromFirestore: (DocumentSnapshot<Map<String, dynamic>> snapshot, _) =>
+            Product.fromJson(snapshot.data()!),
+        toFirestore: (product, _) => product.toJson(),
       ),
     );
   }

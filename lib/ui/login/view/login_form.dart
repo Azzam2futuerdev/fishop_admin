@@ -30,7 +30,6 @@ class LoginForm extends StatelessWidget {
           child: Container(
             height: context.height / 1.5,
             decoration: const BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(35), topRight: Radius.circular(35)),
             ),
@@ -95,7 +94,7 @@ class _EmailInput extends StatelessWidget {
           decoration: InputDecorationExtension.defaultInputDecoration(
             context,
             errorText: state.email.invalid ? 'invalid email' : null,
-            hintText: 'Enter Email Addres',
+            hintText: "",
             boxConstraintsMaxWidth: context.width / 1.01,
           ),
         );
@@ -117,7 +116,7 @@ class _PasswordInput extends StatelessWidget {
             obscureText: true,
             decoration: InputDecorationExtension.defaultInputDecoration(context,
                 errorText: state.password.invalid ? 'invalid password' : null,
-                hintText: 'Enter password',
+                hintText: '',
                 boxConstraintsMaxWidth: context.width / 1.01));
       },
     );
