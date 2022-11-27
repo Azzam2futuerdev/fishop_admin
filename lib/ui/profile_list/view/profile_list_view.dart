@@ -11,25 +11,19 @@ class ProfileListView extends StatelessWidget {
     return FirestoreDataTable(
       onSelectedRows: (items) => print(items),
       columnLabels: const {
-        'id': Text('id'),
-        'title': Text('title'),
-        'rating': Text('rating'),
-        'type': Text('type'),
-        'stockCount': Text('stockCount'),
-        'size': Text('size'),
-        'productName': Text('productName'),
-        'description': Text('description'),
-        'customerReview': Text('customerReview'),
-        'trendProduct': Text('trendProduct'),
-        'unitPrice': Text('unitPrice'),
-        'category': Text('category'),
-        'storeName': Text('storeName'),
-        'storeId': Text('storeId')
+        "id": Text("id"),
+        "addressBook": Text("addressBook"),
+        "name": Text("name"),
+        "surName": Text("surName"),
+        "identity": Text("identity"),
+        "phoneNumber": Text("phoneNumber"),
+        "email": Text("email"),
+        "giftCodes": Text('giftCodes')
       },
-      query: productsRef.reference.withConverter<Product>(
+      query: productsRef.reference.withConverter<Profile>(
         fromFirestore: (DocumentSnapshot<Map<String, dynamic>> snapshot, _) =>
-            Product.fromJson(snapshot.data()!),
-        toFirestore: (product, _) => product.toJson(),
+            Profile.fromJson(snapshot.data()!),
+        toFirestore: (profile, _) => profile.toJson(),
       ),
     );
   }

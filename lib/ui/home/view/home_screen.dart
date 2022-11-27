@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fishop_admin/ui/home/cubit/home_cubit.dart';
 import 'package:fishop_admin/ui/product_add/view/product_add_view.dart';
 import 'package:fishop_admin/ui/product_list/view/product_list.dart';
+import 'package:fishop_admin/ui/profile_list/view/profile_list_view.dart';
 import 'package:fishop_firebase/fishop_firebase.dart';
 
 import 'package:flutter/material.dart';
@@ -30,15 +31,18 @@ class _HomeScreenState extends State<HomeScreen> {
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.healing,
-                    color: Colors.white,
                   ),
                   label: 'product list'),
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.approval,
-                    color: Colors.white,
                   ),
                   label: 'product add view'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.abc,
+                  ),
+                  label: 'profile view'),
             ],
           );
         },
@@ -53,6 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
           return const ProductListView();
         case 1:
           return ProductAddView();
+        case 2:
+          return const ProfileListView();
         default:
           return const Text("Wrong selection");
       }
