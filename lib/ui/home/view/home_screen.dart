@@ -1,13 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fishop_admin/ui/home/cubit/home_cubit.dart';
 import 'package:fishop_admin/ui/product_add/view/product_add_view.dart';
 import 'package:fishop_admin/ui/product_list/view/product_list.dart';
 import 'package:fishop_admin/ui/profile_list/view/profile_list_view.dart';
-import 'package:fishop_firebase/fishop_firebase.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutterfire_ui/firestore.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});

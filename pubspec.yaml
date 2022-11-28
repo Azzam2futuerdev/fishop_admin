@@ -53,6 +53,7 @@ dependencies:
     git: https://github.com/fiskindal/fishop_firebase.git
   font_awesome_flutter: ^10.2.1
   logger: ^1.1.0
+  uuid: ^3.0.7
 
 
 dev_dependencies:

@@ -3,20 +3,21 @@ import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
 import 'package:fishop_firebase/fishop_firebase.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:uuid/uuid.dart';
 
 class ProductService {
   final ImagePicker picker = ImagePicker();
-  String? imageName;
+
   Future<Uint8List> imageRead() async {
     XFile? result = await picker.pickImage(source: ImageSource.gallery);
-    imageName = result!.name;
-    return result.readAsBytes();
+    return result!.readAsBytes();
   }
 
+  String uuid = const Uuid().v4();
   Future<void> addProduct(Product product) async {
     final storageRef = FirebaseStorage.instance.ref();
-    String? result =
-        await storageRef.child("images/$imageName").getDownloadURL();
+
+    String? result = await storageRef.child("images/$uuid").getDownloadURL();
     product.imgUrl = result;
     await productsRef.add(product);
   }
@@ -26,9 +27,8 @@ class ProductService {
 
     final storageRef = FirebaseStorage.instance.ref();
 
-    final uploadTask = storageRef
-        .child("images/$imageName")
-        .putData(await imageRead(), metadata);
+    final uploadTask =
+        storageRef.child("images/$uuid").putData(await imageRead(), metadata);
     uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) async {
       switch (taskSnapshot.state) {
         case TaskState.running:
